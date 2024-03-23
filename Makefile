@@ -3,6 +3,9 @@
 setup:
 	@make up
 	@make ps
+init:
+	docker-compose up -d --build
+	docker-compose exec app composer install
 down:
 	docker-compose down --remove-orphans
 up:
