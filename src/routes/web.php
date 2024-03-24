@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('admin')->middleware(['auth'])
+->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+});
 
 Route::get('/', function () {
     return view('welcome');
